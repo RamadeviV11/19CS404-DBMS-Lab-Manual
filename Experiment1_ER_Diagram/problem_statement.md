@@ -44,9 +44,9 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 |     Member–Session (Books)         |       1:M     |         Partial      |    Optional personal sessions   |
 
 ### Assumptions
-- 
-- 
-- 
+- A member can exist without joining programs initially.
+- Payments can be for membership or sessions.
+- Trainers must be assigned to at least one program.
 
 ---
 
@@ -86,9 +86,9 @@ The Central Library wants to manage book lending and cultural events.
 |        Member–Event (Register)      |        M:N    |       Partial        |     Optional events  |
 
 ### Assumptions
-- 
-- 
-- 
+- A book can be borrowed multiple times but by one member at a time.
+- Rooms cannot host two events at same time.
+- Fines apply only after due date.
 
 ---
 
@@ -128,9 +128,9 @@ A popular restaurant wants to manage reservations, orders, and billing.
 |      Reservation–Order        |    1:M        |        Total       |   Orders belong to reservation    |
 
 ### Assumptions
-- 
-- 
-- 
+- Walk-in customers are stored as reservations without prior booking.
+- A waiter can handle multiple reservations per shift.
+- Bill is generated after all orders are completed.
 
 ---
 
