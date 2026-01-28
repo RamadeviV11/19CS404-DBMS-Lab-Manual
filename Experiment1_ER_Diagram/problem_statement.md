@@ -29,19 +29,19 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 
 | Entity | Attributes (PK, FK) | Notes |
 |--------|--------------------|-------|
-|    Member    |       member_id (PK), name, contact             |    Library member   |
-|    Book    |            book_id (PK), title, author, category_id (FK)        |   Each copy tracked    |
-|    Category    |          category_id (PK), category_name          |    Fiction, Science, etc.   |
-|   Loan     |          loan_id (PK), book_id (FK), member_id (FK), loan_date, return_date          |    Borrowing record   |
-|    Event    |          event_id (PK), event_name, event_date, room_id (FK)          |   Cultural events    |
+|     Member   |     member_id (PK), name, membership_type, start_date               |    Gym member details   |
+|   Program     |          program_id (PK), program_name, schedule          |   Yoga, Zumba, etc.    |
+|   Trainer     |     trainer_id (PK), name, specialization               |    Trainers can handle multiple programs   |
+|  Session      |           session_id (PK), session_date, time, member_id (FK), trainer_id (FK)         |   Personal training    |
+|     Attendance   |           attendance_id (PK), session_id (FK), member_id (FK), status         |   Present/Absent    |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
 |--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+|     Relationship         |      M:N      |        Partial       |    Member can join many programs   |
+|      Program–Trainer (Assigned)        |     M:N       |         Total      |  Program must have trainers     |
+|     Member–Session (Books)         |       1:M     |         Partial      |    Optional personal sessions   |
 
 ### Assumptions
 - 
@@ -71,19 +71,19 @@ The Central Library wants to manage book lending and cultural events.
 
 | Entity | Attributes (PK, FK) | Notes |
 |--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+|    Member    |       member_id (PK), name, contact             |    Library member   |
+|    Book    |            book_id (PK), title, author, category_id (FK)        |   Each copy tracked    |
+|    Category    |          category_id (PK), category_name          |    Fiction, Science, etc.   |
+|   Loan     |          loan_id (PK), book_id (FK), member_id (FK), loan_date, return_date          |    Borrowing record   |
+|    Event    |          event_id (PK), event_name, event_date, room_id (FK)          |   Cultural events    |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
 |--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+|       Member–Book (Borrow)       |       M:N     |       Partial        |    Via Loan entity   |
+|       Book–Category       |          M:1  |        Total       |    Each book must have categoryEach book must have category   |
+|        Member–Event (Register)      |        M:N    |       Partial        |     Optional events  |
 
 ### Assumptions
 - 
