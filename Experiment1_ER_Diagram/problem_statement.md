@@ -113,19 +113,19 @@ A popular restaurant wants to manage reservations, orders, and billing.
 
 | Entity | Attributes (PK, FK) | Notes |
 |--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+|    Customer    |          customer_id (PK), name, phone          |   Walk-in or reserved    |
+|   Reservation     |              reservation_id (PK), date, time, guests, customer_id (FK), waiter_id (FK)      |    Table booking   |
+|     Waiter   |          waiter_id (PK), name, shift          |    Staff   |
+|    Order    |         order_id (PK), reservation_id (FK), order_time           |  Multiple per reservation     |
+|    Dish    |        dish_id (PK), dish_name, price, category_id (FK)            |  Menu item     |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
 |--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+|        Customer–Reservation      |       1:M     |     Partial          |   Walk-ins allowed    |
+|         Reservation–Waiter     |      M:1      |       Total        |  Must be served     |
+|      Reservation–Order        |    1:M        |        Total       |   Orders belong to reservation    |
 
 ### Assumptions
 - 
