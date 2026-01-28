@@ -29,11 +29,11 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 
 | Entity | Attributes (PK, FK) | Notes |
 |--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+|    Member    |       member_id (PK), name, contact             |    Library member   |
+|    Book    |            book_id (PK), title, author, category_id (FK)        |   Each copy tracked    |
+|    Category    |          category_id (PK), category_name          |    Fiction, Science, etc.   |
+|   Loan     |          loan_id (PK), book_id (FK), member_id (FK), loan_date, return_date          |    Borrowing record   |
+|    Event    |          event_id (PK), event_name, event_date, room_id (FK)          |   Cultural events    |
 
 ### Relationships and Constraints
 
