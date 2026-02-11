@@ -105,7 +105,7 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Insert a customer with CustomerID 301, Name Michael Jordan, Address 123 Maple St, City Chicago, and ZipCode 60616 into the Customers table.
+Insert a customer with CustomerID 301, Name Michael Jordan, Address 123 Maple St, City Chicago, and ZipCode 60616 into the Customers table.
 
 For example:
 
@@ -117,7 +117,7 @@ CustomerID  Name            Address       City        ZipCode
 
 
 ```sql
--- INSERT INTO Customers (CustomerID, Name, Address, City, Zipcode)
+INSERT INTO Customers (CustomerID, Name, Address, City, Zipcode)
 VALUES (301, 'Michael Jordan', '123 Maple St', 'Chicago', 60616);
 ```
 
@@ -128,7 +128,7 @@ VALUES (301, 'Michael Jordan', '123 Maple St', 'Chicago', 60616);
 
 **Question 2**
 ---
--- Write a SQL query to Add a new column State as text in the Student_details table.
+ Write a SQL query to Add a new column State as text in the Student_details table.
 
 Sample table: Student_details
 
@@ -165,7 +165,7 @@ ADD COLUMN State TEXT;
 
 **Question 3**
 ---
--- Create a table named Shipments with the following constraints:
+Create a table named Shipments with the following constraints:
 ShipmentID as INTEGER should be the primary key.
 ShipmentDate as DATE.
 SupplierID as INTEGER should be a foreign key referencing Suppliers(SupplierID).
@@ -194,7 +194,7 @@ Error: FOREIGN KEY constraint failed
 
 **Question 4**
 ---
--- Create a new table named orders with the following specifications:
+Create a new table named orders with the following specifications:
 ord_id as TEXT with a length of 4.
 item_id as TEXT.
 ord_date as DATE.
@@ -228,8 +228,7 @@ O001        I001        2023-08-01     10         100
 
 
 **Question 5**
----
--- In the Student_details table, insert a student record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+---In the Student_details table, insert a student record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 
 RollNo      Name            Gender      Subject      MARKS
 ----------  ------------    ----------  ----------   ----------
@@ -262,7 +261,7 @@ VALUES (208, 'Sophia Johnson', 'F', 'Science', NULL);
 
 **Question 6**
 ---
--- Create a table named Events with the following columns:
+ Create a table named Events with the following columns:
 
 EventID as INTEGER
 EventName as TEXT
@@ -292,8 +291,7 @@ cid         name        type        notnull     dflt_value  pk
 
 
 **Question 7**
----
--- Insert all students from Archived_students table into the Student_details table.
+---Insert all students from Archived_students table into the Student_details table.
 
 cid         name        type        notnull     dflt_value  pk
 ----------  ----------  ----------  ----------  ----------  ----------
@@ -324,7 +322,7 @@ SELECT * FROM Archived_students;
 
 **Question 8**
 ---
--- Write a SQL query to Rename the "city" column to "location" in the "customer" table.
+ Write a SQL query to Rename the "city" column to "location" in the "customer" table.
 
 Sample table: customer
 
@@ -359,7 +357,7 @@ RENAME COLUMN city TO location;
 
 **Question 9**
 ---
--- Insert all employees from Former_employees into Employee
+ Insert all employees from Former_employees into Employee
 
 Table attributes are EmployeeID, Name, Department, Salary
 
@@ -386,7 +384,7 @@ From Former_employees;
 
 **Question 10**
 ---
--- Write a SQL Query  to add attribute Date_of_joining as Date and rename the attribute job_title as Designation in the table 'Employees'
+ Write a SQL Query  to add attribute Date_of_joining as Date and rename the attribute job_title as Designation in the table 'Employees'
 
 For example:
 
