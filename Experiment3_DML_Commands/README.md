@@ -47,352 +47,377 @@ SELECT column1, column2 FROM table_name WHERE condition;
 ```
 **Question 1**
 --
--- How many male and female doctors are there in each medical specialty?
+-- Write a SQL statement to Increase the selling price by 10% for all products in the 'Bakery' category in the products table.
 
-Sample table:Doctors Table
+Products table
 
-
-
-For example:
-
-Result
-Specialty          Gender    TotalDoctors
------------------  --------  --------------
-Cardiology         Male      1
-Dermatology        Male      1
-Gastroenterology   Female    4
-Gastroenterology   Male      1
-Pediatrics         Female    1
-Pediatrics         Male      2
-
+---------------
+product_id
+product_name
+category
+cost_price
+sell_price
+reorder_lvl
+quantity
+supplier_id
 
 ```sql
--- SELECT Specialty, Gender, COUNT(*) AS TotalDoctors
-FROM Doctors
-GROUP BY Specialty, Gender
-ORDER BY Specialty, Gender;
+-- UPDATE products
+SET sell_price = sell_price * 1.10
+WHERE category = 'Bakery';
 ```
 
 **Output:**
 
-<img width="1817" height="1189" alt="image" src="https://github.com/user-attachments/assets/9eaf7b3c-9c8c-4926-9b85-3eb7bbe2f6ce" />
+<img width="1214" height="610" alt="image" src="https://github.com/user-attachments/assets/6db24869-98ab-4159-bc3b-abd0cce1f0e3" />
+
 
 
 **Question 2**
 ---
--- What is the total number of appointments scheduled by each doctor?
+-- Write a SQL query to reduce the reorder level by 30% where cost price is more than 50 and quantity in stock is less than 100 in the products table.
 
-Sample table:Appointments Table
+Products Table 
 
-
-
+name          type       
+----------    ---------- 
+product_id     INT PRIMARY KEY        
+product_name   VARCHAR(10) 
+category       VARCHAR(50) 
+cost_price     DECIMAL(10) 
+sell_price     DECIMAL(10) 
+reorder_lvl    INT        
+quantity       INT        
+supplier_id    INT               
 For example:
 
-Result
-DoctorID    TotalAppointments
-----------  -----------------
-1           1
-2           3
-5           3
-9           2
-10          1
+Test	Result
+--pragma table_info('products');
+select changes();
+changes()
+----------
+2
 
 
 ```sql
--- SELECT DoctorID, COUNT(*) AS TotalAppointments
-FROM Appointments
-GROUP BY DoctorID
-ORDER BY DoctorID;
+-- UPDATE products
+SET reorder_lvl = reorder_lvl - (reorder_lvl * 30 / 100)
+WHERE cost_price > 50
+AND quantity < 100;
 ```
 
 **Output:**
 
-<img width="1308" height="1007" alt="image" src="https://github.com/user-attachments/assets/a31bd348-eb5c-41f7-8016-036edf652356" />
+<img width="1232" height="538" alt="image" src="https://github.com/user-attachments/assets/b2eb2d56-5e46-48ea-9fde-2f0afb94cf6a" />
+
 
 
 **Question 3**
 ---
--- How many appointments are scheduled for each doctor?
+-- Write a SQL statement to Increase quantity of all products by 10% to adjust for surplus stock counted
 
-Sample table:Appointments Table
+Products table
 
-
-
-For example:
-
-Result
-DoctorID    TotalAppointments
-----------  -----------------
-3           3
-4           2
-6           1
-7           3
-10          1
+---------------
+product_id
+product_name
+category
+cost_price
+sell_price
+reorder_lvl
+quantity
+supplier_id
 
 
 ```sql
--- SELECT DoctorID, COUNT(*) AS TotalAppointments
-FROM Appointments
-GROUP BY DoctorID;
+-- UPDATE products
+SET quantity =quantity * 1.10;
 ```
 
 **Output:**
 
-<img width="1275" height="1148" alt="image" src="https://github.com/user-attachments/assets/31d42726-4f27-4889-8315-b3a1c99f1df7" />
+<img width="1229" height="706" alt="image" src="https://github.com/user-attachments/assets/69f0c0ff-baf7-48b2-8569-2fda78aa8e80" />
+
 
 **Question 4**
 ---
--- Write a SQL query to calculate the average purchase amount of all orders. Return average purchase amount.
+-- Write a SQL statement to Update the product_name to 'Premium Bread' whose product ID is 5 in the products table.
 
-Sample table: orders
+Products table
 
-ord_no      purch_amt   ord_date    customer_id  salesman_id
-
-----------  ----------  ----------  -----------  -----------
-
-70001       150.5       2012-10-05  3005         5002
-
-70009       270.65      2012-09-10  3001         5005
-
-70002       65.26       2012-10-05  3002         5001
-
- 
-
-For example:
-
-Result
-AVERAGE
-----------
-1461.765
+---------------
+product_id
+product_name
+category
+cost_price
+sell_price
+reorder_lvl
+quantity
+supplier_id
 
 
 ```sql
--- SELECT AVG(purch_amt) AS AVERAGE
-FROM orders;
+-- UPDATE products
+SET product_name = 'Premium Bread'
+WHERE product_id = 5;
 ```
 
 **Output:**
 
-<img width="728" height="629" alt="image" src="https://github.com/user-attachments/assets/200aed35-296d-45a2-93d4-37e2297c3033" />
+<img width="1221" height="488" alt="image" src="https://github.com/user-attachments/assets/b4165702-a0bc-419c-a4e4-4ad06fd44c92" />
+
 
 
 **Question 5**
 ---
--- Write a SQL query to find the number of employees who are having the same age removing the duplicate values.
+-- Write a SQL query to Delete customers with 'GRADE' 3 and whose 'CUST_NAME' contains the substring 'BBB', and 'PAYMENT_AMT' is greater than 2000
 
-Sample table: employee
+Sample table: Customer
 
-id
-
-name
-
-age
-
-address
-
-salary
-
-1
-
-Paul
-
-32
-
-California
-
-20000
-
-4
-
-Mark
-
-25
-
-Richtown
-
-65000
-
-5
-
-David
-
-27
-
-Texas
-
-85000
-
- 
-
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
 For example:
 
-Result
-COUNT
+Test	Result
+select changes();
+changes()
 ----------
-4
+0
 
 
 ```sql
--- SELECT COUNT(DISTINCT age) AS COUNT
-FROM employee;
+-- DELETE FROM Customer
+WHERE GRADE = 3
+   AND CUST_NAME LIKE '%BBB%'
+   AND PAYMENT_AMT > 2000;
 ```
 
 **Output:**
 
-<img width="930" height="623" alt="image" src="https://github.com/user-attachments/assets/143b99c7-00b3-4c59-bad5-0533677f7be6" />
+<img width="1223" height="592" alt="image" src="https://github.com/user-attachments/assets/f483cec0-8f75-4124-a329-d71a64a8bea4" />
+
 
 
 **Question 6**
 ---
--- Write a SQL query to find the total amount of fruits with a unit type of 'LB'.
+-- Write a SQL query to Delete customers from 'customer' table where 'GRADE' is odd.
 
-Note: Inventory attribute contains amount of fruits
+Sample table: Customer
 
-Table: fruits
-
-name        type
-----------  ----------
-id          INTEGER
-name        TEXT
-unit        TEXT
-inventory   INTEGER
-price       REAL
- 
-
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
 For example:
 
-Result
-total
+Test	Result
+select changes();
+changes()
 ----------
-225
+14
+
 
 
 ```sql
--- SELECT SUM(inventory) AS total
-FROM fruits
-WHERE unit = 'LB';
+-- DELETE FROM customer
+WHERE GRADE % 2 <> 0;
 ```
 
 **Output:**
 
-<img width="717" height="633" alt="image" src="https://github.com/user-attachments/assets/1f32c56d-f086-45ab-814e-bb72d7af5ddc" />
+<img width="1232" height="506" alt="image" src="https://github.com/user-attachments/assets/de05651c-cea2-4fd0-a110-8b479c868403" />
+
 
 
 **Question 7**
 ---
--- Write a SQL query to return the total number of rows in the 'customer' table where the city is Noida.
-
-Sample table: customer
-
-
+-- Write a SQL query to Delete customers from 'customer' table where 'GRADE' is not equal to 3.
 
  
+Sample table: Customer
 
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
 For example:
 
-Result
-COUNT
+Test	Result
+select distinct(grade)from customer;
+GRADE
 ----------
+2
+3
 1
+0
+GRADE
+----------
+3
+
 
 
 ```sql
--- SELECT COUNT(*) AS COUNT
-FROM customer
-WHERE city = 'Noida';
+-- DELETE FROM customer
+WHERE GRADE !=3;
 ```
 
 **Output:**
 
-<img width="778" height="616" alt="image" src="https://github.com/user-attachments/assets/7a74f43e-ade1-4d64-8ee9-1447ebba0d36" />
+<img width="896" height="619" alt="image" src="https://github.com/user-attachments/assets/2562e522-a2e5-4638-8ab5-9a4a4cad6f67" />
+
 
 
 **Question 8**
 ---
--- Write the SQL query that accomplishes the selection of average price for each category from the "products" table and includes only those products where the average price falls between 10 and 15.
+-- Write a SQL query to Delete customers from 'customer' table where 'GRADE' is exactly 2.
 
-Sample table: products
+ 
+Sample table: Customer
 
-
-
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
 For example:
 
-Result
-category_id  AVG(Price)
------------  ----------
-1            12.375
-
+Test	Result
+select distinct(grade)from customer;
+GRADE
+----------
+2
+3
+1
+0
+GRADE
+----------
+3
+1
+0
 
 ```sql
--- SELECT category_id, AVG(Price) 
-FROM products
-GROUP BY category_id
-HAVING AVG(price) BETWEEN 10 AND 15;
+--DELETE FROM customer
+WHERE GRADE=2;
 ```
 
 **Output:**
 
-<img width="1100" height="678" alt="image" src="https://github.com/user-attachments/assets/ff9fedd5-2762-4111-8b95-819f325322b2" />
+<img width="867" height="672" alt="image" src="https://github.com/user-attachments/assets/34c7ab6e-ea3d-4d90-b70b-6d76f31ce88a" />
+
 
 
 **Question 9**
 ---
--- Write the SQL query that achieves the grouping of data by occupation, calculates the average work hours for each occupation, and includes only those occupations where the average work hour falls between 10 and 12.
+-- Write a SQL query to Delete customers from 'customer' table where 'CUST_COUNTRY' is neither 'India' nor 'USA'.
 
-Sample table: employee1
+Sample table: Customer
 
-
-
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
 For example:
 
-Result
-occupation  AVG(workhour)
-----------  -------------
-Business    10.0
-Engineer    12.0
+Test	Result
+select changes();
+changes()
+----------
+11
 
 ```sql
--- SELECT occupation, AVG(workhour)
-FROM employee1
-GROUP BY occupation
-HAVING AVG(workhour) BETWEEN 10 AND 12;
+-- DELETE FROM customer
+WHERE CUST_COUNTRY NOT IN ('India', 'USA');
 ```
 
 **Output:**
 
-<img width="1123" height="751" alt="image" src="https://github.com/user-attachments/assets/e55b85d4-5f11-4965-b420-80b91d10cce1" />
+<img width="1227" height="633" alt="image" src="https://github.com/user-attachments/assets/5d83252c-7e0c-4704-91fb-46a9a64581e0" />
+
 
 
 **Question 10**
 ---
--- Write the SQL query that achieves the grouping of data by city, calculates the total income for each city, and includes only those cities where the total income sum is greater than 200,000.
+-- Write a query to fetch details of employees whose EmpLname ends with an alphabet ‘A’ and contains five alphabets.
+EmployeeInfo Table
 
-Sample table: employee
+EmpID
+
+EmpFname
+
+EmpLname
+
+Department
+
+Project
+
+Address
+
+DOB
+
+Gender
+
+1
+
+Sanjay
+
+Mehra
+
+HR
+
+P1
+
+Hyderabad(HYD)
+
+01/12/1976
+
+M
+
+2
+
+Ananya
+
+Mishra
+
+Admin
+
+P2
+
+Delhi(DEL)
+
+02/05/1968
+
+F
 
 
 
 For example:
 
 Result
-city        Income
-----------  ----------
-Alaska      450000
-Arizona     1000000
-California  5300000
-Florida     5350000
-Georgia     250000
+EmpID       EmpFname    EmpLname    Department  Project     Address         DOB         Gender
+----------  ----------  ----------  ----------  ----------  --------------  ----------  ----------
+1           Sanjay      Mehra       HR          P1          Hyderabad(HYD)  1976-12-01  M
 
 
 ```sql
--- SELECT city, SUM(income) AS Income
-FROM employee
-GROUP BY city
-HAVING SUM(income) > 200000;
+-- SELECT * FROM EmployeeInfo
+WHERE EmpLname LIKE '____A';
 ```
 
 **Output:**
 
-<img width="1061" height="991" alt="image" src="https://github.com/user-attachments/assets/02f6e23d-e8cb-43bc-af6d-2a385a6547d9" />
+<img width="1201" height="313" alt="image" src="https://github.com/user-attachments/assets/a8441481-06e0-499d-a580-55d45dbdfa26" />
+
 
 
 ## RESULT
